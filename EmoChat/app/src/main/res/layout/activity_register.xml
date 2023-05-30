@@ -27,11 +27,13 @@
             android:textStyle="bold"/>
         
         <FrameLayout
+            android:id="@+id/layoutImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20sdp">
 
             <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/imageProfile"
                 android:layout_width="@dimen/_80sdp"
                 android:layout_height="@dimen/_80sdp"
                 android:background="@drawable/background_image"
@@ -39,11 +41,12 @@
                 app:riv_oval="true"/>
 
             <TextView
+                android:id="@+id/textAddImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/add_image"
-                android:textColor="@color/secondary_text"
+                android:textColor="@color/hint_text_color"
                 android:textSize="@dimen/_10sdp"/>
         </FrameLayout>
 
@@ -54,6 +57,7 @@
             android:layout_marginTop="@dimen/_20sdp"
             android:background="@drawable/background_input"
             android:hint="@string/name"
+            android:textColorHint="@color/hint_text_color"
             android:imeOptions="actionNext"
             android:importantForAutofill="no"
             android:inputType="text"
@@ -69,6 +73,7 @@
             android:layout_marginTop="@dimen/_20sdp"
             android:background="@drawable/background_input"
             android:hint="@string/email"
+            android:textColorHint="@color/hint_text_color"
             android:imeOptions="actionNext"
             android:importantForAutofill="no"
             android:inputType="textEmailAddress"
@@ -84,6 +89,7 @@
             android:layout_marginTop="@dimen/_20sdp"
             android:background="@drawable/background_input"
             android:hint="@string/password"
+            android:textColorHint="@color/hint_text_color"
             android:imeOptions="actionNext"
             android:importantForAutofill="no"
             android:inputType="textPassword"
@@ -99,6 +105,7 @@
             android:layout_marginTop="@dimen/_20sdp"
             android:background="@drawable/background_input"
             android:hint="@string/confirm_password"
+            android:textColorHint="@color/hint_text_color"
             android:imeOptions="actionDone"
             android:importantForAutofill="no"
             android:inputType="textPassword"
@@ -107,16 +114,33 @@
             android:textColor="@color/primary_text"
             android:textSize="@dimen/_13sdp"/>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonRegister"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20sdp"
-            android:text="@string/register"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:cornerRadius="@dimen/_8sdp"
-            app:backgroundTint="@color/button_primary"/>
+            android:animateLayoutChanges="true">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonRegister"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:text="@string/register"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                app:cornerRadius="@dimen/_8sdp"
+                app:backgroundTint="@color/button_primary"/>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_gravity="center"
+                android:indeterminateTint="@color/button_primary"
+                android:visibility="invisible" />
+
+        </FrameLayout>
+
+
 
         <TextView
             android:id="@+id/textLogin"
