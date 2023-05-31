@@ -1,7 +1,5 @@
 package com.example.emochat.Activities
 
-import android.animation.ArgbEvaluator
-import android.animation.ValueAnimator
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -13,10 +11,17 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.util.Patterns
+import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.example.emochat.MainActivity
 import com.example.emochat.R
 import com.example.emochat.databinding.ActivityLoginBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
 
@@ -36,9 +41,49 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.buttonLogin.setOnClickListener{
+            //testing vibration
             colorTransition()
             vibrate()
-            Toast.makeText(applicationContext, "Clicked Button", Toast.LENGTH_SHORT).show()
+            //login logic
+            if(isValidLogin()){
+                login()
+            }
+        }
+    }
+    private fun login(){
+        loading(true)
+        CoroutineScope(Dispatchers.Main).launch {
+            delay(3000)
+            loading(false)
+            Toast.makeText(applicationContext, "Login success", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            startActivity(intent)
+        }
+    }
+    private fun isValidLogin(): Boolean{
+        var isValid = true
+
+        if(binding.inputEmail.text.toString().trim().isEmpty()){
+            binding.inputEmail.error = "Please enter email"
+            isValid = false
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.inputEmail.text.toString()).matches()) {
+            binding.inputEmail.error="Enter a valid email address"
+            isValid = false
+        }
+        if(binding.inputPassword.text.toString().trim().isEmpty()){
+            binding.inputPassword.error = "Please enter password"
+            isValid = false
+        }
+        return isValid
+    }
+    private fun loading(isLoading: Boolean){
+        if(isLoading){
+            binding.buttonLogin.visibility = View.INVISIBLE
+            binding.progressBar.visibility = View.VISIBLE
+        }
+        else{
+            binding.progressBar.visibility = View.INVISIBLE
+            binding.buttonLogin.visibility = View.VISIBLE
         }
     }
     @Suppress("DEPRECATION")

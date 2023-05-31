@@ -14,7 +14,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import com.example.emochat.MainActivity
 import com.example.emochat.databinding.ActivityRegisterBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -22,8 +21,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
 import java.io.FileNotFoundException
-import java.io.InputStream
-import java.net.URI
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -41,26 +38,23 @@ class RegisterActivity : AppCompatActivity() {
     private fun setListeners(){
         binding.textLogin.setOnClickListener { finish() }
         binding.buttonRegister.setOnClickListener {
-            if(isValidSignUp()){
-                signUp()
+            if(isValidRegister()){
+                register()
             }
         }
         binding.layoutImage.setOnClickListener{
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             pickImage.launch(intent)
+            binding.addImage.error = null
         }
     }
-
-    private fun showToast(message: String){
-        Toast.makeText(applicationContext, message, Toast.LENGTH_SHORT).show()
-    }
-    private fun signUp(){
+    private fun register(){
         loading(true)
         CoroutineScope(Dispatchers.Main).launch {
             delay(3000)
             loading(false)
-            showToast("Register complete.")
+            Toast.makeText(applicationContext, "Register complete", Toast.LENGTH_SHORT).show()
 
             finish()
         }
@@ -94,38 +88,43 @@ class RegisterActivity : AppCompatActivity() {
              }
         }
     }
-    private fun isValidSignUp(): Boolean {
+    private fun isValidRegister(): Boolean {
+        var isValid = true
+        binding.inputPassword.error = null
+        binding.inputConfirmPassword.error = null
+        binding.addImage.error = null
+
         if (encodedImage.isEmpty()){
-            showToast("Select profile image")
-            return false
+            binding.addImage.visibility = View.VISIBLE
+            binding.addImage.error = "Select profile image"
+            isValid = false
         }
-        else if(binding.inputName.text.toString().trim().isEmpty()){
-            showToast("Please enter name")
-            return false
+        if(binding.inputName.text.toString().trim().isEmpty()){
+            binding.inputName.error = "Please enter name"
+            isValid = false
         }
-        else if(binding.inputEmail.text.toString().trim().isEmpty()){
-            showToast("Please enter email")
-            return false
+        if(binding.inputEmail.text.toString().trim().isEmpty()){
+            binding.inputEmail.error = "Please enter email"
+            isValid = false
         }
         else if (!Patterns.EMAIL_ADDRESS.matcher(binding.inputEmail.text.toString()).matches()) {
-            showToast("Enter a valid email address")
-            return false
+            binding.inputEmail.error = "Enter a valid email address"
+            isValid = false
         }
-        else if(binding.inputPassword.text.toString().trim().isEmpty()){
-            showToast("Enter password")
-            return false
+        if(binding.inputPassword.text.toString().trim().isEmpty()){
+            binding.inputPassword.error = "Please enter password"
+            isValid = false
         }
-        else if(binding.inputConfirmPassword.text.toString().trim().isEmpty()){
-            showToast("Confirm your password")
-            return false
+        if(binding.inputConfirmPassword.text.toString().trim().isEmpty()){
+            binding.inputConfirmPassword.error = "Please confirm your password"
+            isValid = false
         }
-        else if(binding.inputPassword.text.toString() != binding.inputConfirmPassword.text.toString()){
-            showToast("Password & confirm password must be the same")
-            return false
+        if(binding.inputPassword.text.toString() != binding.inputConfirmPassword.text.toString()) {
+            binding.inputPassword.error = "Password & confirm password must be the same"
+            binding.inputConfirmPassword.error = "Password & confirm password must be the same"
+            isValid = false
         }
-        else{
-            return true
-        }
+            return isValid
     }
     private fun loading(isLoading: Boolean){
         if(isLoading){

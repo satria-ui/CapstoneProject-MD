@@ -25,7 +25,7 @@
             android:textColor="@color/primary_text"
             android:textSize="@dimen/_18sdp"
             android:textStyle="bold"/>
-        
+
         <FrameLayout
             android:id="@+id/layoutImage"
             android:layout_width="wrap_content"
@@ -48,6 +48,15 @@
                 android:text="@string/add_image"
                 android:textColor="@color/hint_text_color"
                 android:textSize="@dimen/_10sdp"/>
+
+            <EditText
+                android:id="@+id/addImage"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_22sdp"
+                android:layout_gravity="end"
+                android:visibility="gone"
+                android:background="@android:color/transparent"
+                tools:ignore="Autofill,LabelFor,TextFields" />
         </FrameLayout>
 
         <EditText
