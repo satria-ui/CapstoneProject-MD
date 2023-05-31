@@ -1,6 +1,7 @@
 package com.example.emochat.Activities
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -11,6 +12,7 @@ import android.provider.MediaStore
 import android.util.Base64
 import android.util.Patterns
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -38,6 +40,9 @@ class RegisterActivity : AppCompatActivity() {
     private fun setListeners(){
         binding.textLogin.setOnClickListener { finish() }
         binding.buttonRegister.setOnClickListener {
+            // Hide the keyboard
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(it.windowToken, 0)
             if(isValidRegister()){
                 register()
             }

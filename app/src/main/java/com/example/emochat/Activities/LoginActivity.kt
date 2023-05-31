@@ -13,6 +13,7 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import android.util.Patterns
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.emochat.MainActivity
@@ -44,6 +45,9 @@ class LoginActivity : AppCompatActivity() {
             //testing vibration
             colorTransition()
             vibrate()
+            // Hide the keyboard
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(it.windowToken, 0)
             //login logic
             if(isValidLogin()){
                 login()
