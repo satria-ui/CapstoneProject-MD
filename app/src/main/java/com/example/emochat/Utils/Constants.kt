@@ -9,4 +9,6 @@ object Constants {
     const val KEY_IS_SIGNED_IN =  "isSignedIn"
     const val KEY_USER_ID = "userId"
     const val KEY_IMAGE = "image"
+    val PREF_IS_LOGIN = "PREF_IS_LOGIN"
+    val PREF_TOKEN = "PREF_TOKEN"
 }

@@ -1,5 +1,6 @@
 package com.example.emochat.Activities
 
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -11,28 +12,40 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.emochat.MainActivity
+import com.example.emochat.Network.ApiServices
+import com.example.emochat.Network.LoginResponse
+import com.example.emochat.Network.RetrofitClient
+import com.example.emochat.PreferenceHelper.Helper
 import com.example.emochat.R
+import com.example.emochat.Utils.Constants
 import com.example.emochat.databinding.ActivityLoginBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
-
+    lateinit var sharedPref: Helper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        sharedPref = Helper(this)
         setListeners()
     }
 
@@ -50,19 +63,53 @@ class LoginActivity : AppCompatActivity() {
             imm.hideSoftInputFromWindow(it.windowToken, 0)
             //login logic
             if(isValidLogin()){
-                login()
+                val email = binding.inputEmail.text.toString()
+                val password = binding.inputPassword.text.toString()
+                login(email, password)
             }
         }
     }
-    private fun login(){
-        loading(true)
-        CoroutineScope(Dispatchers.Main).launch {
-            delay(3000)
-            loading(false)
-            Toast.makeText(applicationContext, "Login success", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-            startActivity(intent)
+    override fun onStart(){
+        super.onStart()
+        if(sharedPref.getBoolean(Constants.PREF_IS_LOGIN)){
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
+    }
+    private fun login(email:String, password:String){
+        loading(true)
+        RetrofitClient.apiService.login(email, password).enqueue(object:Callback<LoginResponse>{
+            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                if (response.isSuccessful){
+                    val accessToken = response.body()?.accessToken
+                    Log.d("LOGIN", "Response is successful. Access Token: $accessToken")
+                    if(accessToken!=null){
+                        sharedPref.put(Constants.PREF_TOKEN, accessToken)
+                        sharedPref.put(Constants.PREF_IS_LOGIN, true)
+
+                        // Start MainActivity
+                        loading(false)
+                        val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
+                    else{
+                        Toast.makeText(this@LoginActivity, "Invalid response", Toast.LENGTH_SHORT).show()
+                        loading(false)
+                    }
+                }
+                else{
+                    Toast.makeText(this@LoginActivity, "Failed to Login", Toast.LENGTH_SHORT).show()
+                    loading(false)
+                }
+            }
+
+            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                Toast.makeText(this@LoginActivity, "Failed to login: ${t.message}", Toast.LENGTH_SHORT).show()
+                Log.e(ContentValues.TAG, "Error: ${t.message}")
+                loading(false)
+            }
+        })
     }
     private fun isValidLogin(): Boolean{
         var isValid = true

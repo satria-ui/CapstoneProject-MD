@@ -1,0 +1,106 @@
+[
+    {
+        "merged": "com.example.emochat.app-merged_res-31:/layout_activity_register.xml.flat",
+        "source": "com.example.emochat.app-main-33:/layout/activity_register.xml"
+    },
+    {
+        "merged": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-merged_res-31:/drawable_ic_warning.xml.flat",
+        "source": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-main-33:/drawable/ic_warning.xml"
+    },
+    {
+        "merged": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-merged_res-31:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-main-33:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-merged_res-31:/drawable_custom_progressbar.xml.flat",
+        "source": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-main-33:/drawable/custom_progressbar.xml"
+    },
+    {
+        "merged": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-merged_res-31:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-main-33:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-merged_res-31:/layout_activity_register.xml.flat",
+        "source": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-main-33:/layout/activity_register.xml"
+    },
+    {
+        "merged": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-merged_res-31:/drawable_baseline_warning_amber_24.xml.flat",
+        "source": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-main-33:/drawable/baseline_warning_amber_24.xml"
+    },
+    {
+        "merged": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-merged_res-31:/drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-main-33:/drawable-v24/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-merged_res-31:/drawable_ic_launcher_background.xml.flat",
+        "source": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-main-33:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-merged_res-31:/xml_data_extraction_rules.xml.flat",
+        "source": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-main-33:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-merged_res-31:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-main-33:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-merged_res-31:/drawable_button_background.xml.flat",
+        "source": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-main-33:/drawable/button_background.xml"
+    },
+    {
+        "merged": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-merged_res-31:/drawable_background_image.xml.flat",
+        "source": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-main-33:/drawable/background_image.xml"
+    },
+    {
+        "merged": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-merged_res-31:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-main-33:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-merged_res-31:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-main-33:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-merged_res-31:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-main-33:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-merged_res-31:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-main-33:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-merged_res-31:/layout_activity_main.xml.flat",
+        "source": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-main-33:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-merged_res-31:/layout_activity_login.xml.flat",
+        "source": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-main-33:/layout/activity_login.xml"
+    },
+    {
+        "merged": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-merged_res-31:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-main-33:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-merged_res-31:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-main-33:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-merged_res-31:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-main-33:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-merged_res-31:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-main-33:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-merged_res-31:/drawable_background_input.xml.flat",
+        "source": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-main-33:/drawable/background_input.xml"
+    },
+    {
+        "merged": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-merged_res-31:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-main-33:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-merged_res-31:/xml_backup_rules.xml.flat",
+        "source": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-main-33:/xml/backup_rules.xml"
+    }
+]

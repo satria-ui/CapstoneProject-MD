@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="angry_transition">#D42B30</color>
+    <color name="black">#FF000000</color>
+    <color name="button_primary">#2D5342</color>
+    <color name="error">#B00020</color>
+    <color name="hint_text_color">#3D3D3D</color>
+    <color name="icon_background">#20FFFFFF</color>
+    <color name="input_background">#DAD3BF</color>
+    <color name="primary">#EDE9DD</color>
+    <color name="primary_text">#0E0E0E</color>
+    <color name="received_message_background">#090D16</color>
+    <color name="secondary_text">#7C7C7C</color>
+    <color name="white">#E8E8E8</color>
+    <string name="add_image">Add Image</string>
+    <string name="app_name">EmoChat</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="email">Email</string>
+    <string name="login">Login</string>
+    <string name="login_to_continue">Login to continue</string>
+    <string name="name">Name</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="welcome_back">Welcome Back</string>
+    <style name="Base.Theme.EmoChat" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        <item name="colorPrimary">@color/primary</item>
+        <item name="android:statusBarColor">@color/primary</item>
+    </style>
+    <style name="Theme.EmoChat" parent="Base.Theme.EmoChat"/>
+</resources>

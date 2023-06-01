@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-mergeDebugResources-30:/layout/activity_register.xml",
+        "source": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-main-33:/layout/activity_register.xml"
+    },
+    {
+        "merged": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-mergeDebugResources-30:/layout/activity_main.xml",
+        "source": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-main-33:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-mergeDebugResources-30:/layout/activity_login.xml",
+        "source": "/Users/rubyamanda/.gradle/daemon/8.0/com.example.emochat.app-main-33:/layout/activity_login.xml"
+    },
+    {
+        "merged": "com.example.emochat.app-mergeDebugResources-30:/layout/activity_register.xml",
+        "source": "com.example.emochat.app-main-33:/layout/activity_register.xml"
+    }
+]
