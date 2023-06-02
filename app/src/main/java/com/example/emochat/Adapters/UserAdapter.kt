@@ -1,10 +1,14 @@
 package com.example.emochat.Adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.emochat.Activities.ChatActivity
+import com.example.emochat.MainActivity
 import com.example.emochat.Models.User
 import com.example.emochat.databinding.ItemUserBinding
 
@@ -20,6 +24,8 @@ class UserAdapter(private val userList: List<User>) : RecyclerView.Adapter<UserA
 
             itemView.setOnClickListener {
                 Toast.makeText(itemView.context, "Pressed", Toast.LENGTH_SHORT).show()
+                val intent = Intent(itemView.context, ChatActivity::class.java)
+                itemView.context.startActivity(intent)
             }
         }
     }

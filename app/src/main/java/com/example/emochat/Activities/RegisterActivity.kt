@@ -1,6 +1,7 @@
 package com.example.emochat.Activities
 
 import android.app.Activity
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -10,17 +11,21 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Base64
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.emochat.Network.RegisterResponse
+import com.example.emochat.Network.RetrofitClient
 import com.example.emochat.databinding.ActivityRegisterBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import org.json.JSONException
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.ByteArrayOutputStream
 import java.io.FileNotFoundException
 
@@ -43,8 +48,11 @@ class RegisterActivity : AppCompatActivity() {
             // Hide the keyboard
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(it.windowToken, 0)
+            //register logic
             if(isValidRegister()){
-                register()
+                val email = binding.inputEmail.text.toString()
+                val password = binding.inputPassword.text.toString()
+                register(email, password)
             }
         }
         binding.layoutImage.setOnClickListener{
@@ -54,15 +62,43 @@ class RegisterActivity : AppCompatActivity() {
             binding.addImage.error = null
         }
     }
-    private fun register(){
+    private fun register(email:String, password:String){
         loading(true)
-        CoroutineScope(Dispatchers.Main).launch {
-            delay(3000)
-            loading(false)
-            Toast.makeText(applicationContext, "Register complete", Toast.LENGTH_SHORT).show()
+        RetrofitClient.apiService.register(email, password).enqueue(object: Callback<RegisterResponse>{
+            override fun onResponse(
+                call: Call<RegisterResponse>,
+                response: Response<RegisterResponse>
+            ) {
+                if(response.isSuccessful){
+                    val accessToken = response.body()?.accessToken
+                    Toast.makeText(this@RegisterActivity, "Register success", Toast.LENGTH_SHORT).show()
+                    Log.d("Register", "Response is successful. Access Token: $accessToken")
+                    loading(false)
+                    finish()
+                }
+                else{
+                    try{
+                        val errorBody = response.errorBody()?.string()
+                        val errorJson = JSONObject(errorBody)
+                        val statusCode = errorJson.getInt("statusCode")
+                        val message = errorJson.getString("message")
+                        Toast.makeText(this@RegisterActivity, "Failed to register: $message", Toast.LENGTH_SHORT).show()
+                        Log.e("Register", "Failed to register. Status Code: $statusCode, Message: $message")
+                    }
+                    catch (e: JSONException){
+                        Toast.makeText(this@RegisterActivity, "Failed to parse error response", Toast.LENGTH_SHORT).show()
+                        Log.e("Register", "Failed to parse error response: ${e.message}")
+                    }
+                    loading(false)
+                }
+            }
+            override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
+                Toast.makeText(this@RegisterActivity, "Failed to register: ${t.message}", Toast.LENGTH_SHORT).show()
+                Log.e(ContentValues.TAG, "Error: ${t.message}")
+                loading(false)
+            }
 
-            finish()
-        }
+        })
     }
 
     private fun encodedImage(bitmap:Bitmap): String{

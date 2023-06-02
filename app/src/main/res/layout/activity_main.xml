@@ -28,7 +28,8 @@
             android:textStyle="bold"
             android:textSize="@dimen/_24ssp"
             android:textColor="@color/primary_text"
-            android:layout_marginStart="20dp"/>
+            android:paddingStart="@dimen/_20sdp"
+            android:paddingEnd="@dimen/_20sdp"/>
 
         <ImageView
             android:id="@+id/buttonLogout"
@@ -40,6 +41,54 @@
             android:layout_gravity="center_vertical"
             android:contentDescription="@string/logout" />
     </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/search_box"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header_container">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="@color/hint_text_color"
+            app:boxCornerRadiusBottomEnd="16dp"
+            app:boxCornerRadiusTopEnd="16dp"
+            app:boxCornerRadiusBottomStart="16dp"
+            app:boxCornerRadiusTopStart="16dp"
+            app:boxBackgroundColor="@color/input_background"
+            app:boxStrokeColor="@color/primary_text"
+            app:hintTextColor="@color/hint_text_color">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/search_query"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:hint="@string/search"
+                android:textColor="@color/primary_text"
+                android:textCursorDrawable="@null"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/search_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="2dp"
+            android:padding="3dp"
+            android:background="@drawable/circle_bg"
+            android:contentDescription="@string/search_icon"
+            app:srcCompat="@drawable/baseline_search_24" />
+    </FrameLayout>
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -57,8 +106,9 @@
         android:scrollbars="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header_container"/>
+        app:layout_constraintTop_toBottomOf="@+id/search_box"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

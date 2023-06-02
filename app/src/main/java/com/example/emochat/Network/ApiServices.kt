@@ -13,4 +13,11 @@ interface ApiServices {
         @Field("email") email: String,
         @Field("password") password: String
     ): Call<LoginResponse>
+
+    @POST("auth/register")
+    @FormUrlEncoded
+    fun register(
+        @Field("email") email: String,
+        @Field("password") password: String
+    ): Call<RegisterResponse>
 }

@@ -2,14 +2,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#E8E8E8</color>
-    <color name="primary">#EDE9DD</color>
-<!--    <color name="primary">#1C2E46</color>-->
-<!--    <color name="primary_dark">#142232</color>-->
-    <color name="primary_text">#0E0E0E</color>
-    <color name="button_primary">#2D5342</color>
+    <color name="primary">#222222</color>
+    <!--    <color name="primary">#1C2E46</color>-->
+    <!--    <color name="primary_dark">#142232</color>-->
+    <color name="primary_text">#F0F0F0</color>
+    <color name="button_primary">#81BBA7</color>
     <color name="secondary_text">#7C7C7C</color>
-    <color name="input_background">#DAD3BF</color>
-    <color name="hint_text_color">#3D3D3D</color>
+    <color name="input_background">#333333</color>
+    <color name="hint_text_color">#F0F0F0</color>
     <color name="icon_background">#20FFFFFF</color>
     <color name="error">#B00020</color>
     <color name="received_message_background">#F2E1A6</color>

@@ -19,22 +19,15 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.emochat.MainActivity
-import com.example.emochat.Network.ApiServices
 import com.example.emochat.Network.LoginResponse
 import com.example.emochat.Network.RetrofitClient
 import com.example.emochat.PreferenceHelper.Helper
 import com.example.emochat.R
 import com.example.emochat.Utils.Constants
 import com.example.emochat.databinding.ActivityLoginBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class LoginActivity : AppCompatActivity() {
 
@@ -103,7 +96,6 @@ class LoginActivity : AppCompatActivity() {
                     loading(false)
                 }
             }
-
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 Toast.makeText(this@LoginActivity, "Failed to login: ${t.message}", Toast.LENGTH_SHORT).show()
                 Log.e(ContentValues.TAG, "Error: ${t.message}")
