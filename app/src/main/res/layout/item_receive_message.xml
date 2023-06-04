@@ -7,11 +7,11 @@
 
     <TextView
         android:id="@+id/textMessage"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/background_receive_message"
         android:padding="@dimen/_12sdp"
-        android:textColor="@color/primary_text"
+        android:textColor="@color/black"
         android:textSize="@dimen/_13sdp"
         android:text="this is a message"
         app:layout_constraintStart_toStartOf="parent"

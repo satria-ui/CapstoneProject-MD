@@ -9,7 +9,7 @@
     <color name="button_primary">#81BBA7</color>
     <color name="secondary_text">#7C7C7C</color>
     <color name="input_background">#333333</color>
-    <color name="hint_text_color">#F0F0F0</color>
+    <color name="hint_text_color">#D6D6D6</color>
     <color name="icon_background">#20FFFFFF</color>
     <color name="error">#B00020</color>
     <color name="received_message_background">#F2E1A6</color>

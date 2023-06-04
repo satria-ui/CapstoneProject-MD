@@ -39,18 +39,20 @@
         android:textColor="@color/primary_text"
         android:textSize="@dimen/_14ssp"
         android:textStyle="bold"
-        android:text="Adam Satria"
+        android:text="@string/username"
         app:layout_constraintBottom_toBottomOf="@+id/backButton"
         app:layout_constraintStart_toEndOf="@+id/backButton"
         app:layout_constraintTop_toTopOf="@+id/backButton"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clipToPadding="false"
         android:orientation="vertical"
         android:overScrollMode="never"
-        android:padding="@dimen/_20sdp"
+        android:padding="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="@id/viewBackground"
@@ -79,12 +81,22 @@
         app:layout_constraintTop_toTopOf="@id/chatBox">
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/sendIcon"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/_4sdp"
             android:padding="@dimen/_8sdp"
             android:src="@drawable/round_send_24"
-            android:tint="@color/primary"/>
+            android:tint="@color/primary"
+            android:visibility="gone"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/recordIcon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/_8sdp"
+            android:src="@drawable/round_keyboard_voice_24"
+            android:tint="@color/primary" />
 
     </FrameLayout>
 

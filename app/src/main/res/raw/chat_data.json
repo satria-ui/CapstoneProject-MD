@@ -1,0 +1,52 @@
+[
+  {
+    "user": "John",
+    "message": "Hello",
+    "isSent": true
+  },
+  {
+    "user": "Alice",
+    "message": "Hi John!",
+    "isSent": false
+  },
+  {
+    "user": "John",
+    "message": "How are you?",
+    "isSent": true
+  },
+  {
+    "user": "Alice",
+    "message": "I'm doing well, thanks!",
+    "isSent": false
+  },
+  {
+    "user": "John",
+    "message": "ngentot kau",
+    "isSent": true
+  },
+  {
+    "user": "John",
+    "message": "anak monyet",
+    "isSent": true
+  },
+  {
+    "user": "Alice",
+    "message": "ape lu tai",
+    "isSent": false
+  },
+  {
+    "user": "Alice",
+    "message": "I'm doing well, thanks!",
+    "isSent": false
+  },
+  {
+    "user": "Alice",
+    "message": "I'm doing well, thanks!",
+    "isSent": false
+  },
+  {
+    "user": "John",
+    "message": "anak monyet",
+    "isSent": true
+  }
+]

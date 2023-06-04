@@ -1,5 +1,6 @@
 package com.example.emochat.Adapters
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -13,7 +14,7 @@ import com.example.emochat.Models.User
 import com.example.emochat.databinding.ItemUserBinding
 
 class UserAdapter(private val userList: List<User>) : RecyclerView.Adapter<UserAdapter.UserViewHolder>(){
-
+    private var filteredUserList: List<User> = userList
     inner class UserViewHolder(private val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(user: User) {
             binding.textName.text = user.name
@@ -23,8 +24,8 @@ class UserAdapter(private val userList: List<User>) : RecyclerView.Adapter<UserA
                 .into(binding.imageProfile)
 
             itemView.setOnClickListener {
-                Toast.makeText(itemView.context, "Pressed", Toast.LENGTH_SHORT).show()
                 val intent = Intent(itemView.context, ChatActivity::class.java)
+                intent.putExtra("userName", user.name)
                 itemView.context.startActivity(intent)
             }
         }
@@ -36,11 +37,20 @@ class UserAdapter(private val userList: List<User>) : RecyclerView.Adapter<UserA
     }
 
     override fun getItemCount(): Int {
-        return userList.size
+        return filteredUserList.size
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        val user = userList[position]
+        val user = filteredUserList[position]
         holder.bind(user)
+    }
+    @SuppressLint("NotifyDataSetChanged")
+    fun search(query: String) {
+        filteredUserList = if (query.isNotEmpty()) {
+            userList.filter { it.name.contains(query, ignoreCase = true) }
+        } else {
+            userList
+        }
+        notifyDataSetChanged()
     }
 }
