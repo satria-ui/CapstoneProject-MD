@@ -132,14 +132,9 @@ class LoginActivity : AppCompatActivity() {
     @Suppress("DEPRECATION")
     private fun vibrate(){
         val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-        if(Build.VERSION.SDK_INT >= 26){
-            vibrator.vibrate(VibrationEffect.createOneShot(1500, VibrationEffect.DEFAULT_AMPLITUDE))
-        }
-        else{
-            vibrator.vibrate(1500)
-        }
+        vibrator.vibrate(VibrationEffect.createOneShot(1500, VibrationEffect.DEFAULT_AMPLITUDE))
     }
-
+    @Suppress("DEPRECATION")
     private fun colorTransition(){
         binding.scrollView.setBackgroundColor(Color.RED)
         val primaryColor = ContextCompat.getColor(this, R.color.primary)
