@@ -7,11 +7,9 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -56,33 +54,34 @@ class MainActivity : AppCompatActivity() {
         recycleView.adapter = UserAdapter(userList)
     }
     private fun setListeners(){
+        var isSearchBoxEmpty = true
         binding.buttonLogout.setOnClickListener{
             sharedPref.clear()
             Toast.makeText(this@MainActivity, "Logout successful", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
-        binding.searchIcon.setOnClickListener{
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            val query = binding.searchQuery.text.toString()
-            if(query.isNotEmpty()){
-                search(query)
-                imm.hideSoftInputFromWindow(it.windowToken, 0)
-                binding.textInputLayout.clearFocus()
-            }
-            else if(query.isEmpty()){
-                imm.hideSoftInputFromWindow(it.windowToken, 0)
-                binding.textInputLayout.clearFocus()
-            }
+        binding.clearIcon.setOnClickListener{
+            binding.searchQuery.text?.clear()
         }
         binding.searchQuery.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun afterTextChanged(s: Editable?) {
+                isSearchBoxEmpty = s.isNullOrEmpty()
+                if(isSearchBoxEmpty){
+                    binding.searchIcon.visibility = View.VISIBLE
+                    binding.clearIcon.visibility = View.GONE
+                }
+                else{
+                    binding.searchIcon.visibility = View.GONE
+                    binding.clearIcon.visibility = View.VISIBLE
+                }
                 val query = s.toString()
                 search(query)
             }
         })
+        //clearing input layout focus
         binding.searchQuery.setOnEditorActionListener{_, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

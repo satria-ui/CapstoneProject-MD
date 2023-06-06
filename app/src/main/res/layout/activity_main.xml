@@ -87,6 +87,17 @@
             android:background="@drawable/circle_bg"
             android:contentDescription="@string/search_icon"
             app:srcCompat="@drawable/baseline_search_24" />
+        <ImageView
+            android:id="@+id/clear_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="2dp"
+            android:padding="3dp"
+            android:contentDescription="@string/clear_icon"
+            app:srcCompat="@drawable/baseline_clear_24"
+            android:visibility="gone"/>
     </FrameLayout>
 
     <ProgressBar

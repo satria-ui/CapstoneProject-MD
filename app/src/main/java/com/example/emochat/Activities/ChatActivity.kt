@@ -49,11 +49,10 @@ class ChatActivity : AppCompatActivity() {
         binding.textName.text = intent.getStringExtra("userName")
         recycleView = binding.recyclerView
         setListeners()
-        setKeyboardListener()
 
         loading(true)
         enableChatBox(false)
-        binding.sendButton.isEnabled = false
+        enableRecord(false)
         CoroutineScope(Dispatchers.Main).launch {
             delay(2000)
             chatList.addAll(withContext(Dispatchers.IO) {
@@ -62,7 +61,8 @@ class ChatActivity : AppCompatActivity() {
             loading(false)
             showRecyclerList(chatList)
             enableChatBox(true)
-            binding.sendButton.isEnabled = true
+            enableRecord(true)
+            setKeyboardListener()
         }
     }
 
@@ -98,7 +98,6 @@ class ChatActivity : AppCompatActivity() {
                         binding.sendButton.setBackgroundResource(R.drawable.background_recording_button)
                         enableChatBox(false)
                         isRecording = true
-                        Toast.makeText(this@ChatActivity, "Start recording", Toast.LENGTH_SHORT).show()
                     }
                     true->{
                         binding.recordIcon.visibility = View.VISIBLE
@@ -107,7 +106,6 @@ class ChatActivity : AppCompatActivity() {
                         enableChatBox(true)
                         isRecording = false
                         stopRecording()
-                        Toast.makeText(this@ChatActivity, "Stop recording", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
@@ -189,6 +187,11 @@ class ChatActivity : AppCompatActivity() {
         binding.chatBox.isEnabled = enabled
         binding.chatBox.isFocusable = enabled
         binding.chatBox.isFocusableInTouchMode = enabled
+    }
+    private fun enableRecord(enabled: Boolean){
+        binding.sendButton.isEnabled = enabled
+        binding.sendButton.isFocusable = enabled
+        binding.sendButton.isFocusableInTouchMode = enabled
     }
     private fun setKeyboardListener() {
         val rootView = findViewById<View>(android.R.id.content)

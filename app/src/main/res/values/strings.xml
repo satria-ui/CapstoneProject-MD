@@ -16,4 +16,5 @@
     <string name="search">Search</string>
     <string name="search_icon">search icon</string>
     <string name="type_a_message">Type a message</string>
+    <string name="clear_icon">clear icon</string>
 </resources>
