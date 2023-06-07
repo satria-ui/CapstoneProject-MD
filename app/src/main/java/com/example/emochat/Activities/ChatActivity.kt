@@ -2,6 +2,7 @@ package com.example.emochat.Activities
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.media.MediaPlayer
 import android.media.MediaRecorder
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -37,8 +38,6 @@ class ChatActivity : AppCompatActivity() {
     private val chatList = mutableListOf<ChatMessage>()
     private val RECORD_AUDIO_PERMISSION_REQUEST_CODE = 1
     private var audioFilePath = ""
-    private var isKeyboardOpen = false
-    private var isRecording = false
     private var currentUser = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,6 +67,7 @@ class ChatActivity : AppCompatActivity() {
 
     private fun setListeners(){
         var isChatBoxEmpty = true
+        var isRecording = false
 
         binding.backButton.setOnClickListener{
             finish()
@@ -116,7 +116,7 @@ class ChatActivity : AppCompatActivity() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun afterTextChanged(text: Editable?) {
-                isChatBoxEmpty = text.isNullOrEmpty()
+                isChatBoxEmpty = text?.trim().isNullOrEmpty()
                 if(isChatBoxEmpty){
                     binding.recordIcon.visibility = View.VISIBLE
                     binding.sendIcon.visibility = View.GONE
@@ -185,15 +185,12 @@ class ChatActivity : AppCompatActivity() {
     }
     private fun enableChatBox(enabled: Boolean){
         binding.chatBox.isEnabled = enabled
-        binding.chatBox.isFocusable = enabled
-        binding.chatBox.isFocusableInTouchMode = enabled
     }
     private fun enableRecord(enabled: Boolean){
         binding.sendButton.isEnabled = enabled
-        binding.sendButton.isFocusable = enabled
-        binding.sendButton.isFocusableInTouchMode = enabled
     }
     private fun setKeyboardListener() {
+        var isKeyboardOpen = false
         val rootView = findViewById<View>(android.R.id.content)
         rootView.viewTreeObserver.addOnGlobalLayoutListener {
             val heightDiff = rootView.rootView.height - rootView.height

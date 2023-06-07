@@ -13,7 +13,6 @@ import com.example.emochat.databinding.ItemSentMessageBinding
 import java.lang.IllegalArgumentException
 
 class ChatAdapter(private val chatList: List<ChatMessage>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
-    private lateinit var mediaPlayer: MediaPlayer
     inner class ReceivedMessageViewHolder(private val binding: ItemReceiveMessageBinding):RecyclerView.ViewHolder(binding.root){
         fun bind(message: ChatMessage){
             binding.textMessage.text = message.message
@@ -27,32 +26,32 @@ class ChatAdapter(private val chatList: List<ChatMessage>) : RecyclerView.Adapte
             binding.textDateTime.text = message.time
         }
     }
-    inner class VoiceMessageSentViewHolder(private val binding: ItemAudioRightBinding): RecyclerView.ViewHolder(binding.root), View.OnAttachStateChangeListener{
-        init {
-            binding.root.addOnAttachStateChangeListener(this)
-        }
+    inner class VoiceMessageSentViewHolder(private val binding: ItemAudioRightBinding): RecyclerView.ViewHolder(binding.root){
+//        init {
+//            binding.root.addOnAttachStateChangeListener(this)
+//        }
         fun bind(message: ChatMessage){
             binding.textDateTime.text = message.time
             binding.playAudio.setAudio(message.audioUri)
         }
 
-        override fun onViewAttachedToWindow(p0: View) {}
-        override fun onViewDetachedFromWindow(p0: View) {
-            binding.playAudio.onStop()
-        }
+//        override fun onViewAttachedToWindow(p0: View) {}
+//        override fun onViewDetachedFromWindow(p0: View) {
+//            binding.playAudio.onStop()
+//        }
     }
-    inner class VoiceMessageReceiveViewHolder(private val binding: ItemAudioLeftBinding): RecyclerView.ViewHolder(binding.root), View.OnAttachStateChangeListener{
-        init {
-            binding.root.addOnAttachStateChangeListener(this)
-        }
+    inner class VoiceMessageReceiveViewHolder(private val binding: ItemAudioLeftBinding): RecyclerView.ViewHolder(binding.root){
+//        init {
+//            binding.root.addOnAttachStateChangeListener(this)
+//        }
         fun bind(message: ChatMessage){
             binding.textDateTime.text = message.time
             binding.playAudio.setAudio(message.audioUri)
         }
-        override fun onViewAttachedToWindow(p0: View) {}
-        override fun onViewDetachedFromWindow(p0: View) {
-            binding.playAudio.onStop()
-        }
+//        override fun onViewAttachedToWindow(p0: View) {}
+//        override fun onViewDetachedFromWindow(p0: View) {
+//            binding.playAudio.onStop()
+//        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
