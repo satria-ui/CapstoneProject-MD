@@ -11,4 +11,5 @@ object Constants {
     const val KEY_IMAGE = "image"
     val PREF_IS_LOGIN = "PREF_IS_LOGIN"
     val PREF_TOKEN = "PREF_TOKEN"
+    val PREF_EMAIL = "PREF_EMAIL"
 }

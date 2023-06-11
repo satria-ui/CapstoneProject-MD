@@ -17,6 +17,7 @@ import com.example.emochat.Activities.LoginActivity
 import com.example.emochat.Adapters.UserAdapter
 import com.example.emochat.Models.User
 import com.example.emochat.PreferenceHelper.Helper
+import com.example.emochat.Utils.Constants
 import com.example.emochat.databinding.ActivityMainBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -36,6 +37,9 @@ class MainActivity : AppCompatActivity() {
 
         recycleView = binding.recyclerView
         sharedPref = Helper(this)
+
+        val userEmail = sharedPref.getString(Constants.PREF_EMAIL)
+        Toast.makeText(this@MainActivity, "Logged in as $userEmail", Toast.LENGTH_SHORT).show()
         setListeners()
 
         loading(true)

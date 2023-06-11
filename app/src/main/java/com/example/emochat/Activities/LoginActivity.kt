@@ -79,6 +79,7 @@ class LoginActivity : AppCompatActivity() {
                     if(accessToken!=null){
                         sharedPref.put(Constants.PREF_TOKEN, accessToken)
                         sharedPref.put(Constants.PREF_IS_LOGIN, true)
+                        sharedPref.put(Constants.PREF_EMAIL, email)
 
                         // Start MainActivity
                         loading(false)

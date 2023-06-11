@@ -18,8 +18,11 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.emochat.MainActivity
 import com.example.emochat.Network.RegisterResponse
 import com.example.emochat.Network.RetrofitClient
+import com.example.emochat.PreferenceHelper.Helper
+import com.example.emochat.Utils.Constants
 import com.example.emochat.databinding.ActivityRegisterBinding
 import org.json.JSONException
 import org.json.JSONObject
@@ -32,6 +35,7 @@ import java.io.FileNotFoundException
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
+    lateinit var sharedPref: Helper
     private var encodedImage: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +43,7 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        sharedPref = Helper(this)
         setListeners()
     }
 
@@ -73,8 +78,17 @@ class RegisterActivity : AppCompatActivity() {
                     val accessToken = response.body()?.accessToken
                     Toast.makeText(this@RegisterActivity, "Register success", Toast.LENGTH_SHORT).show()
                     Log.d("Register", "Response is successful. Access Token: $accessToken")
-                    loading(false)
-                    finish()
+                    if(accessToken!=null){
+                        sharedPref.put(Constants.PREF_TOKEN, accessToken)
+                        sharedPref.put(Constants.PREF_IS_LOGIN, true)
+                        sharedPref.put(Constants.PREF_EMAIL, email)
+
+                        // Start MainActivity
+                        loading(false)
+                        val intent = Intent(this@RegisterActivity, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
                 }
                 else{
                     try{
