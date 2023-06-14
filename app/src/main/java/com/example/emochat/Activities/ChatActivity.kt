@@ -1,12 +1,20 @@
 package com.example.emochat.Activities
 
 import android.Manifest
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.TransitionDrawable
 import android.media.MediaPlayer
 import android.media.MediaRecorder
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -143,7 +151,13 @@ class ChatActivity : AppCompatActivity() {
     }
     private fun showRecyclerList(chatList: List<ChatMessage>){
         recycleView.layoutManager = LinearLayoutManager(this)
-        recycleView.adapter = ChatAdapter(chatList)
+        val adapter = ChatAdapter(chatList){isAudio ->
+            if (isAudio) {
+                colorTransition()
+                vibrate()
+            }
+        }
+        recycleView.adapter = adapter
         recycleView.scrollToPosition(recycleView.adapter!!.itemCount-1)
     }
 
@@ -249,6 +263,8 @@ class ChatActivity : AppCompatActivity() {
                 recycleView.adapter?.notifyItemInserted(chatList.size - 1)
                 recycleView.scrollToPosition(chatList.size - 1)
                 Log.d("plerplertaikuda", audioUri)
+//                colorTransition()
+//                vibrate()
             }
             catch (e: Exception) {
                 e.printStackTrace()
@@ -293,5 +309,31 @@ class ChatActivity : AppCompatActivity() {
                 Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+    @Suppress("DEPRECATION")
+    private fun vibrate(){
+        val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        vibrator.vibrate(VibrationEffect.createOneShot(1500, VibrationEffect.DEFAULT_AMPLITUDE))
+    }
+    @SuppressLint("DiscouragedApi")
+    @Suppress("DEPRECATION")
+    private fun colorTransition(){
+        val colorList = listOf("angry_transition", "fear_transition", "disgust_transition", "happy_transition", "sad_transition", "neutral_emotion")
+        binding.viewBackground.setBackgroundColor(Color.RED)
+        val primaryColor = ContextCompat.getColor(this, R.color.primary)
+        val color = colorList.shuffled().first()
+        val emotionColor = ContextCompat.getColor(this, resources.getIdentifier(color, "color", packageName))
+        val transitionDrawable = TransitionDrawable(arrayOf(ColorDrawable(primaryColor), ColorDrawable(emotionColor)))
+
+        // Set the TransitionDrawable as the background of the ScrollView
+        binding.viewBackground.background = transitionDrawable
+        // Start the transition animation
+        transitionDrawable.startTransition(1500) // 2 seconds duration
+        // Use Handler to delay reverting the background color
+        val handler = Handler()
+        handler.postDelayed({
+            // Reverse the transition animation
+            transitionDrawable.reverseTransition(1500) // 2 seconds duration
+        }, 1500) // 2 seconds delay before reversing the transition
     }
 }
