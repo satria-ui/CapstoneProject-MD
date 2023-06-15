@@ -49,6 +49,14 @@ class ChatAdapter(private val chatList: List<ChatMessage>, private val isAudioCh
         fun bind(message: ChatMessage){
             binding.textDateTime.text = message.time
             binding.playAudio.setAudio(message.audioUri)
+
+            val defaultOnClick = binding.playAudio.imgPlayClickListener
+            binding.playAudio.imgPlay.setOnClickListener {
+                defaultOnClick?.onClick(it)
+
+                isAudio = true
+                isAudioChangedListener.invoke(isAudio)
+            }
         }
 //        override fun onViewAttachedToWindow(p0: View) {}
 //        override fun onViewDetachedFromWindow(p0: View) {
@@ -67,8 +75,8 @@ class ChatAdapter(private val chatList: List<ChatMessage>, private val isAudioCh
                 SentMessageViewHolder(binding)
             }
             VIEW_TYPE_VOICE_SENT ->{
-                isAudio = true
-                isAudioChangedListener.invoke(isAudio)
+//                isAudio = true
+//                isAudioChangedListener.invoke(isAudio)
                 val binding = ItemAudioRightBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 VoiceMessageSentViewHolder(binding)
             }

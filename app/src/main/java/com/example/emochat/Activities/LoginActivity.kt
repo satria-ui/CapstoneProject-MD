@@ -48,9 +48,6 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.buttonLogin.setOnClickListener{
-            //testing vibration
-            colorTransition()
-            vibrate()
             // Hide the keyboard
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(it.windowToken, 0)

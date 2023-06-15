@@ -39,7 +39,8 @@ class MainActivity : AppCompatActivity() {
         sharedPref = Helper(this)
 
         val userEmail = sharedPref.getString(Constants.PREF_EMAIL)
-        Toast.makeText(this@MainActivity, "Logged in as $userEmail", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this@MainActivity, "Logged in as Alice", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this@MainActivity, "Logged in as $userEmail", Toast.LENGTH_SHORT).show()
         setListeners()
 
         loading(true)

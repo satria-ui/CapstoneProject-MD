@@ -319,21 +319,37 @@ class ChatActivity : AppCompatActivity() {
     @Suppress("DEPRECATION")
     private fun colorTransition(){
         val colorList = listOf("angry_transition", "fear_transition", "disgust_transition", "happy_transition", "sad_transition", "neutral_emotion")
-        binding.viewBackground.setBackgroundColor(Color.RED)
         val primaryColor = ContextCompat.getColor(this, R.color.primary)
+        val inputBgColor = ContextCompat.getColor(this, R.color.input_background)
         val color = colorList.shuffled().first()
+
+        when (color) {
+            "angry_transition" -> Toast.makeText(this@ChatActivity, "angry detected", Toast.LENGTH_SHORT).show()
+            "fear_transition" -> Toast.makeText(this@ChatActivity, "fear detected", Toast.LENGTH_SHORT).show()
+            "disgust_transition" -> Toast.makeText(this@ChatActivity, "disgust detected", Toast.LENGTH_SHORT).show()
+            "happy_transition" -> Toast.makeText(this@ChatActivity, "happy detected", Toast.LENGTH_SHORT).show()
+            "sad_transition" -> Toast.makeText(this@ChatActivity, "sad detected", Toast.LENGTH_SHORT).show()
+            "neutral_emotion" -> Toast.makeText(this@ChatActivity, "neutral detected", Toast.LENGTH_SHORT).show()
+            else -> {
+               Toast.makeText(this@ChatActivity, "emotion not detected", Toast.LENGTH_SHORT).show()
+            }
+        }
         val emotionColor = ContextCompat.getColor(this, resources.getIdentifier(color, "color", packageName))
         val transitionDrawable = TransitionDrawable(arrayOf(ColorDrawable(primaryColor), ColorDrawable(emotionColor)))
+        val transitionChatBox = TransitionDrawable(arrayOf(ColorDrawable(inputBgColor), ColorDrawable(emotionColor)))
 
         // Set the TransitionDrawable as the background of the ScrollView
         binding.viewBackground.background = transitionDrawable
+        binding.constraintLayout.background = transitionChatBox
         // Start the transition animation
-        transitionDrawable.startTransition(1500) // 2 seconds duration
+        transitionDrawable.startTransition(1500)
+        transitionChatBox.startTransition(1500)
         // Use Handler to delay reverting the background color
         val handler = Handler()
         handler.postDelayed({
             // Reverse the transition animation
-            transitionDrawable.reverseTransition(1500) // 2 seconds duration
+            transitionDrawable.reverseTransition(1500)
+            transitionChatBox.reverseTransition(1500)
         }, 1500) // 2 seconds delay before reversing the transition
     }
 }

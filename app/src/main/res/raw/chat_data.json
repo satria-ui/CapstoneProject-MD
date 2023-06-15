@@ -1,52 +1,27 @@
 [
   {
-    "user": "John",
+    "user": "Alice",
     "message": "Hello",
     "isSent": true
   },
   {
-    "user": "Alice",
-    "message": "Hi John!",
+    "user": "John",
+    "message": "Hi Adam!",
     "isSent": false
   },
   {
-    "user": "John",
+    "user": "Alice",
     "message": "How are you?",
     "isSent": true
   },
   {
-    "user": "Alice",
+    "user": "John",
     "message": "I'm doing well, thanks!",
     "isSent": false
   },
   {
     "user": "John",
-    "message": "ngentot kau",
-    "isSent": true
-  },
-  {
-    "user": "John",
-    "message": "anak monyet",
-    "isSent": true
-  },
-  {
-    "user": "Alice",
-    "message": "ape lu tai",
+    "message": "Testing",
     "isSent": false
-  },
-  {
-    "user": "Alice",
-    "message": "I'm doing well, thanks!",
-    "isSent": false
-  },
-  {
-    "user": "Alice",
-    "message": "I'm doing well, thanks!",
-    "isSent": false
-  },
-  {
-    "user": "John",
-    "message": "anak monyet",
-    "isSent": true
   }
 ]

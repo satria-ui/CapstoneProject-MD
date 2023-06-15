@@ -15,4 +15,9 @@
     <color name="received_message_background">#F2E1A6</color>
     <color name="sent_message_background">#F2D1B3</color>
     <color name="angry_transition">#D42B30</color>
+    <color name="fear_transition">#000080</color>
+    <color name="disgust_transition">#008000</color>
+    <color name="happy_transition">#FFFF00</color>
+    <color name="sad_transition">#0000FF</color>
+    <color name="neutral_transition">#808080</color>
 </resources>
